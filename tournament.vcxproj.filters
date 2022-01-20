@@ -15,15 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="tournament.cpp">
+    <ClCompile Include="Tournament.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Club.h">
+    <ClInclude Include="Team.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="league.h">
+    <ClInclude Include="Tournament.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

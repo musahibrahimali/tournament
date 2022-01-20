@@ -1,129 +1,117 @@
 #include <iostream>
 #include <list>
 #include <typeinfo>
-#include "league.h"
-#include "Club.h"
+#include "Tournament.h"
+#include "Team.h"
 
 using namespace std;
 
 int main() {
-    // create a league
-    League premierLeague = League("Premier League");
 
-    // create a list to hold all clubs you will be adding to the league
-    list<Club> clubs;
-    // iterator for the list of clubs
-    list<Club>::iterator it;
-    // the individual clubs to be added to the league (team name, abbreviation and strength) are required
-    Club mancity = Club("Man City", "MNC", 6);
-    Club liverpool = Club("Liverpool", "LIV", 6);
-    Club chelsea = Club("Chelsea", "CHL", 5);
-    Club westham = Club("Westham", "WHU", 2);
-    Club manunited = Club("Man United", "MNU", 4);
-    Club arsenal = Club("Arsenal", "ARS", 4);
-    Club aston = Club("Aston Villa", "AST", 3);
-    Club brighton = Club("Brighton", "BHA", 2);
-    Club burnley = Club("Burnley", "BUR", 2);
-    Club everton = Club("Everton", "EVE", 3);
-    Club leicester = Club("Leicester", "LEI", 5);
-    Club newcastle = Club("Newcastle", "NEW", 4);
-    Club norwich = Club("Norwich", "NOR", 2);
-    Club crystal = Club("Crystal", "PAL", 3);
-    Club sheffield = Club("Sheffield", "SHU", 2);
-    Club southampton = Club("Southampton", "SOT", 3);
-    Club tottenham = Club("Tottenham", "TOT", 5);
-    Club watford = Club("Watford", "WAT", 2);
-    Club wolverhampton = Club("Wolverhampt", "WOL", 3);
-    // add the clubs to the list of clubs
-    clubs.push_back(mancity);
-    clubs.push_back(liverpool);
-    clubs.push_back(chelsea);
-    clubs.push_back(westham);
-    clubs.push_back(manunited);
-    clubs.push_back(arsenal);
-    clubs.push_back(aston);
-    clubs.push_back(brighton);
-    clubs.push_back(burnley);
-    clubs.push_back(everton);
-    clubs.push_back(leicester);
-    clubs.push_back(newcastle);
-    clubs.push_back(norwich);
-    clubs.push_back(crystal);
-    clubs.push_back(sheffield);
-    clubs.push_back(southampton);
-    clubs.push_back(tottenham);
-    clubs.push_back(watford);
-    clubs.push_back(wolverhampton);
+    Tournament fantasyLeague = Tournament("Fantasy League");
+    list<Team> teams;
+    list<Team>::iterator iterator;
 
-    // add all clubs to the league table
-    for (it = clubs.begin(); it != clubs.end(); ++it) {
-        premierLeague.AddTeam(*it);
+    Team livpool = Team("Liverpool", "LIV", 6);
+    Team mancty = Team("Man City", "MNC", 6);
+    Team manuntd = Team("Man United", "MNU", 4);
+    Team chel = Team("Chelsea", "CHL", 5);
+    Team westh = Team("Westham", "WHU", 2);
+    Team ast = Team("Aston Villa", "AST", 3);
+    Team ars = Team("Arsenal", "ARS", 4);
+    Team tott = Team("Tottenham", "TOT", 5);
+    Team burn = Team("Burnley", "BUR", 2);
+    Team ever = Team("Everton", "EVE", 3);
+    Team newc = Team("Newcastle", "NEW", 4);
+    Team lei = Team("Leicester", "LEI", 5);
+    Team nor = Team("Norwich", "NOR", 2);
+    Team crys = Team("Crystal", "PAL", 3);
+    Team sheff = Team("Sheffield", "SHU", 2);
+    Team south = Team("Southampton", "SOT", 3);
+    Team wat = Team("Watford", "WAT", 2);
+    Team wolver = Team("Wolverhampt", "WOL", 3);
+    Team brent = Team("BrentFord", "BRF", 3);
+    Team bri = Team("Brighton", "BHA", 2);
+
+    teams.push_back(mancty);
+    teams.push_back(livpool);
+    teams.push_back(chel);
+    teams.push_back(westh);
+    teams.push_back(manuntd);
+    teams.push_back(ars);
+    teams.push_back(ast);
+    teams.push_back(bri);
+    teams.push_back(burn);
+    teams.push_back(ever);
+    teams.push_back(lei);
+    teams.push_back(newc);
+    teams.push_back(nor);
+    teams.push_back(crys);
+    teams.push_back(sheff);
+    teams.push_back(south);
+    teams.push_back(tott);
+    teams.push_back(wat);
+    teams.push_back(wolver);
+    teams.push_back(brent);
+
+    for (iterator = teams.begin(); iterator != teams.end(); ++iterator) {
+        fantasyLeague.CreateTeam(*iterator);
     }
-    premierLeague.GenerateFixtures();
+    fantasyLeague.CreateFixtures();
 
-    // main menu from which user can select options
-    int option = 0;
-    string teamName;
-    int roundNumber = 1;
-    while (option != 7) {
+    int choice = 0;
+    string team;
+    int round = 1;
+    while (choice != 6) {
         cout << endl;
         cout << "-----------------------" << endl;
-        cout << "      " << "LEAGUE MENU" << endl;
+        cout << "      " << "TOURNAMENT MENU" << endl;
         cout << "-----------------------" << endl;
-        cout << "1. Clubs" << endl;
+        cout << "1. Teams" << endl;
         cout << "2. Fixtures" << endl;
-        cout << "3. Simulate Tornament" << endl;
-        cout << "4. Simulate Next Round" << endl;
-        cout << "5. Results - Single Club" << endl;
-        cout << "6. Current Standing" << endl;
-        cout << "7. Exit" << endl;
+        cout << "3. Simulate Next Round" << endl;
+        cout << "4. Team Result" << endl;
+        cout << "5. League Table" << endl;
+        cout << "6. Exit" << endl;
         cout << "Enter option: ";
-        cin >> option;
-        // check if option is valid
-        if (option < 1 || option > 7) {
+        cin >> choice;
+        if (choice < 1 || choice > 6) {
             cout << "Invalid option" << endl;
             break;
         }
-        // check if option is an integer
-        if (typeid(option).name() != typeid(int).name()) {
+        if (typeid(choice).name() != typeid(int).name()) {
             cout << "Invalid option" << endl;
             break;
         }
-        // switch statement to select the option
-        switch (option) {
+        switch (choice) {
         case 1:
-            premierLeague.ShowAllTeams();
+            fantasyLeague.DisplayTeams();
             break;
         case 2:
-            premierLeague.ShowFixtures();
+            fantasyLeague.ShowFixtures();
             break;
         case 3:
-            cout << "This will simulate a tournament of 8 rounds" << endl;
-            premierLeague.SimulateTornament();
-            break;
-        case 4:
             cout << "Enter a Round number(1 - 8): ";
-            cin >> roundNumber;
-            if (roundNumber > 8 || roundNumber < 1) {
-                cout << "Round number cannot be greater than 8 or less than 1" << endl;
+            cin >> round;
+            if (round > 8 || round < 1) {
+                cout << "Round number be between 1 and 8" << endl;
                 break;
             }
-            premierLeague.SimulateRound(roundNumber);
-            premierLeague.ShowRoundResults(roundNumber);
-            premierLeague.RoundTable(roundNumber);
+            fantasyLeague.SimulateRound(round);
+            fantasyLeague.DisplayResults(round);
+            fantasyLeague.DisplayRoundTable(round);
+            break;
+        case 4:
+            cout << "Enter team name: ";
+            cin >> team;
+            cout << "Enter a Round number: ";
+            cin >> round;
+            fantasyLeague.TeamRoundResults(team, round);
             break;
         case 5:
-            cout << "Enter team name: ";
-            cin >> teamName;
-            cout << "Enter a Round number: ";
-            cin >> roundNumber;
-            premierLeague.RoundGameResultsForTeam(teamName, roundNumber);
+            fantasyLeague.DisplayLeagueTable();
             break;
         case 6:
-            premierLeague.ShowLeagueTable();
-            break;
-        case 7:
-            // exit the application
             break;
         default:
             cout << "Invalid option" << endl;
